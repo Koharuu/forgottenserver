@@ -17,6 +17,8 @@ function onUse(player, item, fromPosition, itemEx, toPosition, isHotkey)
 			local thing = tile:getTopVisibleThing()
 			if thing:isItem() and thing:getType():isMovable() then
 				return thing:moveTo({x = toPosition.x, y = toPosition.y + 1, z = toPosition.z - 1})
+			elseif thing:isCreature() then
+				return thing:teleportTo({x = toPosition.x, y = toPosition.y + 1, z = toPosition.z - 1}, false)
 			end
 		end
 		player:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
